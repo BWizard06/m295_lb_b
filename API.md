@@ -2,14 +2,9 @@
 
 ## **/login**
 
-### **Beschreibung**
-
-Authentifizierung durch E-Mail und Passwort. Nach erfolgreicher Authentifizierung wird eine Sitzung für den Benutzer erstellt.
-
 ### **Endpunkt**
 
 ```
-
 POST /login
 ```
 
@@ -18,9 +13,9 @@ POST /login
 | Parameter | Typ | Beschreibung |
 | --- | --- | --- |
 | email | string | Erforderlich. Die E-Mail-Adresse des Benutzers. |
-| password | string | Erforderlich. Das Passwort des Benutzers. |
+| password | string | Erforderlich. Das Passwort "m295". |
 
-### **Antwort**
+### **Antwort Codes**
 
 | Status-Code | Beschreibung |
 | --- | --- |
@@ -30,20 +25,15 @@ POST /login
 
 ## **/verify**
 
-### **Beschreibung**
-
-Überprüfung, ob der Benutzer authentifiziert ist. Wenn der Benutzer authentifiziert ist, wird die E-Mail-Adresse des Benutzers zurückgegeben.
-
 ### **Endpunkt**
 
 ```
-
 GET /verify
 ```
 
 ### **Anfrage-Parameter**
 
-Keine.
+Es gibt für diesen Endpunkt keine.
 
 ### **Antwort**
 
@@ -54,10 +44,6 @@ Keine.
 
 ## **/logout**
 
-### **Beschreibung**
-
-Beendet die Sitzung des Benutzers.
-
 ### **Endpunkt**
 
 ```
@@ -67,20 +53,16 @@ DELETE /logout
 
 ### **Anfrage-Parameter**
 
-Keine.
+Es gibt für diesen Endpunkt keine.
 
 ### **Antwort**
 
 | Status-Code | Beschreibung |
 | --- | --- |
-| 204 | Erfolgreich abgemeldet. Keine Rückgabe. |
+| 204 | **Erfolgreich** abgemeldet. Keine Rückgabe. |
 | 401 | Der Benutzer ist nicht authentifiziert. |
 
 ## **/tasks**
-
-### **Beschreibung**
-
-Verwaltung von Aufgaben (Tasks) durch den authentifizierten Benutzer.
 
 ### **Endpunkt**
 
@@ -91,7 +73,7 @@ GET /tasks
 
 ### **Anfrage-Parameter**
 
-Keine.
+Es gibt für diesen Endpunkt keine.
 
 ### **Antwort**
 
@@ -99,42 +81,18 @@ Keine.
 | --- | --- |
 | 200 | Liste aller Aufgaben |
 
-### **Beispiel-Antwort**
-
-```
-
-[
-  {
-    "id": 1,
-    "title": "Buy milk",
-    "creationDate": "2023-04-01T00:00:00.000Z",
-    "fulfillementDate": "2023-04-02T00:00:00.000Z",
-    "creator": "test@gmail.com"
-  },
-  {
-    "id": 2,
-    "title": "Call a friend",
-    "creationDate": "2023-04-01T00:00:00.000Z",
-    "fulfillementDate": "2023-04-03T00:00:00.000Z",
-    "creator": "test@gmail.com"
-  }
-]
-
-```
 
 ### **Endpunkt**
 
 ```
-
 POST /tasks
-
 ```
 
 ### **Anfrage-Parameter**
 
 | Parameter | Typ | Beschreibung |
 | --- | --- | --- |
-| title | string | Erforderlich Der Titel der Task |
+| title | string | **Erforderlich** Der Titel der Task |
 | fulfillementDate | string | Das Datum, an dem die Aufgabe abgeschlossen werden soll, im Format YYYY-MM-DD. |
 
 ### **Antwort**
@@ -144,24 +102,9 @@ POST /tasks
 | 201 | Die Aufgabe wurde erfolgreich erstellt. Die Details der erstellten Aufgabe werden zurückgegeben. |
 | 406 | Es fehlt der Titel der Aufgabe oder der Titel ist leer. |
 
-### **Beispiel-Antwort**
-
-```
-
-{
-  "id": "ee6dcef1-998a-4eb3-a6db-1a3d3d056fd3",
-  "title": "Wash the dishes",
-  "creationDate": "2023-05-05T12:00:00.000Z",
-  "fulfillementDate": "2023-05-06T12:00:00.000Z",
-  "creator": "test@gmail.com"
-}
-
-```
-
 ### **Endpunkt**
 
 ```
-
 GET /tasks/:id
 ```
 
@@ -169,7 +112,7 @@ GET /tasks/:id
 
 | Parameter | Typ | Beschreibung |
 | --- | --- | --- |
-| id | string | Erforderlich. Die ID der Aufgabe. |
+| id | string | **Erforderlich**. Die ID der Aufgabe. |
 
 ### **Antwort**
 
@@ -178,33 +121,18 @@ GET /tasks/:id
 | 200 | Details der Aufgabe |
 | 404 | Aufgabe nicht gefunden. |
 
-### **Beispiel-Antwort**
-
-```
-
-{
-  "id": 1,
-  "title": "Buy milk",
-  "creationDate": "2023-04-01T00:00:00.000Z",
-  "fulfillementDate": "2023-04-02T00:00:00.000Z",
-  "creator": "test@gmail.com"
-}
-
-```
 
 ### **Endpunkt**
 
 ```
-
 PUT /tasks/:id
-
 ```
 
 ### **Anfrage-Parameter**
 
 | Parameter | Typ | Beschreibung |
 | --- | --- | --- |
-| title | string | Erforderlich. Der Titel der Aufgabe. |
+| title | string | **Erforderlich**. Der Titel der Aufgabe. |
 | fulfillementDate | string | Das Datum, an dem die Aufgabe abgeschlossen werden soll, im Format YYYY-MM-DD. |
 
 ### **Antwort**
@@ -214,19 +142,6 @@ PUT /tasks/:id
 | 200 | Die Aufgabe wurde erfolgreich aktualisiert. Die Details der aktualisierten Aufgabe werden zurückgegeben. |
 | 404 | Aufgabe nicht gefunden. |
 | 406 | Es fehlt der Titel der Aufgabe oder der Titel ist leer. |
-
-### **Beispiel-Antwort**
-
-```
-
-{
-  "id": 1,
-  "title": "Buy milk and bread",
-  "creationDate": "2023-04-01T00:00:00.000Z",
-  "fulfillementDate": "2023-04-02T00:00:00.000Z"
-}
-
-```
 
 ### **Endpunkt**
 
@@ -239,7 +154,7 @@ DELETE /tasks/:id
 
 | Parameter | Typ | Beschreibung |
 | --- | --- | --- |
-| id | string | Erforderlich. Die ID der Aufgabe. |
+| id | string | **Erforderlich**. Die ID der Aufgabe. |
 
 ### **Antwort**
 
